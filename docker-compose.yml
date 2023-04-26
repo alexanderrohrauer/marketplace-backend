@@ -1,0 +1,15 @@
+version: "3.4"
+
+services:
+  postgres:
+    image: postgres:13
+    container_name: postgres-marketplace
+    environment:
+      POSTGRES_USER: marketplace_backend
+      POSTGRES_PASSWORD: 12345678
+      POSTGRES_DB: marketplace
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/db.sql
+    ports:
+      - "5432:5432"

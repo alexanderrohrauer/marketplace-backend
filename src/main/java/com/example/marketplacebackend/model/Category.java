@@ -1,0 +1,16 @@
+package com.example.marketplacebackend.model;
+
+public enum Category {
+    CAR,
+    CLOTHING_SHOES_AND_ACCESSORIES,
+    SPORTING_GOODS,
+    HOME_AND_GARDEN,
+    TOYS_AND_HOBBIES,
+    BUSINESS_AND_INDUSTRIAL,
+    HEALTH_AND_BEAUTY,
+    PET_SUPPLIES,
+    BABY_ESSENTIALS,
+    ELECTRONICS,
+    COLLECTIBLES_AND_ART,
+    BOOKS_MOVIES_AND_MUSIC,
+}
