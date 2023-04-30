@@ -40,7 +40,7 @@ public class BidController {
             bid = bidRepository.saveAndFlush(bid);
             return ResponseEntity.status(HttpStatus.CREATED).body(bid);
         } else {
-            return ErrorResponse.of("Please supply a username!", HttpStatus.BAD_REQUEST);
+            return ErrorResponse.of("Please supply a username with X-Username header!", HttpStatus.BAD_REQUEST);
         }
     }
 }

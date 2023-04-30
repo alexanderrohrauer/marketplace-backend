@@ -44,7 +44,7 @@ public class AuctionController {
             auction = auctionRepository.saveAndFlush(auction);
             return ResponseEntity.status(HttpStatus.CREATED).body(auction);
         } else {
-            return ErrorResponse.of("Please supply a username!", HttpStatus.BAD_REQUEST);
+            return ErrorResponse.of("Please supply a username with X-Username header!", HttpStatus.BAD_REQUEST);
         }
     }
 
