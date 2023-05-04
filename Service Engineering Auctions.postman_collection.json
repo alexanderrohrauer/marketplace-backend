@@ -1,0 +1,228 @@
+{
+	"info": {
+		"_postman_id": "6b6889dd-92cd-40c3-9a4f-bece39ab2f1a",
+		"name": "Service Engineering Auctions",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16162421",
+		"_collection_link": "https://lunar-spaceship-463938.postman.co/workspace/My-Workspace~bd6ae57a-4319-4a09-807d-8d5ba26aef61/collection/16162421-6b6889dd-92cd-40c3-9a4f-bece39ab2f1a?action=share&creator=16162421&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "auctions",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "Get Auction",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/auctions/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auctions",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get bids",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/auctions/:id/bids",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auctions",
+										":id",
+										"bids"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "jooq",
+					"item": [
+						{
+							"name": "Get auctions",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/jooq/auctions?limit=2",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"jooq",
+										"auctions"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "2"
+										},
+										{
+											"key": "offset",
+											"value": "1",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get auctions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/auctions?size=1&page=2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auctions"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "Fah",
+									"disabled": true
+								},
+								{
+									"key": "size",
+									"value": "1"
+								},
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Auction",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Username",
+								"value": "Alexander",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Auto\",\n    \"seller\": \"alex\",\n    \"category\": \"SPORTING_GOODS\",\n    \"condition\": \"USED\",\n    \"description\": \"Blaues Auto mit 4 Rädern.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auctions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auctions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "bids",
+			"item": [
+				{
+					"name": "Get bids",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/bids?auctionIdEq=1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bids"
+							],
+							"query": [
+								{
+									"key": "auctionIdEq",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add bid",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Username",
+								"value": "maxi",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"price\": 1.99,\n    \"auctionId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/bids",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"bids"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
