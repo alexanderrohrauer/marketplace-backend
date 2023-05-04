@@ -1,0 +1,177 @@
+openapi: 3.0.3
+info:
+  title: marketplace
+  description: marketplace
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:8080'
+paths:
+  /auctions:
+    get:
+      summary: "GET auctions"
+      operationId: "getAuctions"
+      parameters:
+        - name: "search"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Auction"
+    post:
+      summary: "POST auctions"
+      operationId: "createAuction"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuctionDto"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Auction"
+  /auctions/{id}:
+    get:
+      summary: "GET auctions/{id}"
+      operationId: "getAuction"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Auction"
+  /bids:
+    get:
+      summary: "GET bids"
+      operationId: "getBids"
+      parameters:
+        - name: "auctionIdEq"
+          in: "query"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Bid"
+    post:
+      summary: "POST bids"
+      operationId: "addBid"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BidDto"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Bid"
+components:
+  schemas:
+    Auction:
+      type: object
+      required:
+        - id
+        - title
+        - category
+        - description
+        - condition
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        category:
+          type: string
+        description:
+          type: string
+          nullable: true
+        condition:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+    AuctionDto:
+      type: object
+      required:
+        - title
+        - category
+        - condition
+        - description
+      properties:
+        title:
+          type: string
+        category:
+          type: string
+        condition:
+          type: string
+        description:
+          type: string
+          nullable: true
+    Bid:
+      type: object
+      required:
+        - id
+        - username
+        - price
+        - updatedAt
+        - createdAt
+      properties:
+        id:
+          type: integer
+          format: int64
+        username:
+          type: string
+        price:
+          type: number
+          format: float64
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+    BidDto:
+      type: object
+      required:
+        - price
+        - auctionId
+      properties:
+        price:
+          type: number
+          format: float64
+        auctionId:
+          type: integer
+          format: int64
+
