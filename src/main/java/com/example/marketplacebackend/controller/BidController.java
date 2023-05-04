@@ -8,11 +8,11 @@ import com.example.marketplacebackend.dto.BidDto;
 import com.example.marketplacebackend.model.Bid;
 import com.example.marketplacebackend.model.QBid;
 import jakarta.validation.Valid;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("bids")
@@ -27,9 +27,9 @@ public class BidController {
     }
 
     @GetMapping
-    Page<Bid> getBids(Pageable pageable, @RequestParam Long auctionIdEq){
+    List<Bid> getBids(@RequestParam Long auctionIdEq){
         var filter = QBid.bid.auction.id.eq(auctionIdEq);
-        return bidRepository.findAll(filter, pageable);
+        return (List<Bid>) bidRepository.findAll(filter);
     }
 
     @PostMapping

@@ -14,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("auctions")
 public class AuctionController {
@@ -24,12 +26,12 @@ public class AuctionController {
     }
 
     @GetMapping
-    Page<Auction> getAuctions(Pageable pageable, @RequestParam(required = false) String search) {
+    List<Auction> getAuctions(@RequestParam(required = false) String search) {
         var builder = new BooleanBuilder();
         if(search != null) {
             builder.and(QAuction.auction.title.likeIgnoreCase(search + "%"));
         }
-        return auctionRepository.findAll(builder, pageable);
+        return (List<Auction>) auctionRepository.findAll(builder);
     }
 
     @PostMapping
